@@ -1,0 +1,63 @@
+.reactLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh; /* 調整高度 */
+  max-width: 10%; /* 調整最大寬度 */
+  margin: 0 auto; /* 水平置中 */
+  justify-content: center;
+  align-items: center;
+}
+
+.searchBarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* 使容器铺满整个视口高度 */
+}
+
+.searchBarCss {
+  display: flex;
+  width: 60%;
+  height: 5rem;
+  text-align: center;
+  font-weight: bolder;
+  font-family: Arial, sans-serif;
+  line-height: 5rem;
+  font-size: 24px;
+  background-color: rgb(204, 204, 204);
+  border-style: solid;
+  border-radius: 30px;
+  border-color: rgba(252, 252, 252, 0.733);
+  margin: 10px auto; /* 垂直居中 */
+}
+
+.searchBarCss:hover {
+  background: rgb(168, 168, 168);
+  border-color: rgba(252, 252, 252, 0.733);
+}
+
+.searchButtonCss {
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  width: 60%;
+  height: 5rem;
+  background-color: rgb(37, 211, 255);
+  transition: background 0.4s;
+  text-align: center;
+  color: white;
+  font-weight: bolder;
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  border-style: solid;
+  border-radius: 30px;
+  border-color: rgba(252, 252, 252, 0.733);
+  margin: 10px auto; /* 垂直居中 */
+}
+
+.searchButtonCss:hover {
+  background: rgb(111, 226, 255);
+  border-color: rgba(111, 226, 255);
+}
