@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import { useHistory } from 'react-router-dom';
+import reactLogo from './assets/react.svg'; // 修正React图像的导入
 
 const SearchBar = () => {
+    const [serviceUsers, setServiceUsers] = useState([]);
     const [volunteerId, setVolunteerId] = useState('');
-    const history = useHistory();
 
     const volunteerData = {
         VD001: {
@@ -41,14 +40,22 @@ const SearchBar = () => {
 
     const handleSearch = () => {
         if (volunteerId in volunteerData) {
-            history.push(`/VolunteerDetailsPage/${volunteerId}`);
+            const selectedVolunteer = volunteerData[volunteerId];
+            setServiceUsers([...selectedVolunteer.serviceUsers]);
+        } else {
+            setServiceUsers([]);
         }
     };
+
+    const groupedServiceUsers = [];
+    for (let i = 0; i < serviceUsers.length; i += 4) {
+        groupedServiceUsers.push(serviceUsers.slice(i, i + 4));
+    }
 
     return (
         <div>
             <header>
-                <img className="reactLogo" src={reactLogo} alt="reactlogo" />
+                <img className = "reactLogo" src={reactLogo} alt="reactlogo" /> {/* 使用导入的React图像 */}
             </header>
             <div>
                 <input
@@ -59,6 +66,23 @@ const SearchBar = () => {
                     onChange={(e) => setVolunteerId(e.target.value)}
                 />
                 <button className="searchButtonCss" onClick={handleSearch}>Search</button>
+
+                {serviceUsers.length > 0 && (
+                    <div>
+
+                        {groupedServiceUsers.map((group, index) => (
+                            <div key={index} style={{ display: 'flex' }}>
+                                {group.map((serviceUser) => (
+                                    <div key={serviceUser.id} style={{ flex: 1, margin: '10px' }}>
+                                        <p><strong>User ID:</strong> {serviceUser.id}</p>
+                                        <p><strong>Name:</strong> {serviceUser.name}</p>
+                                        <p><strong>Email:</strong> {serviceUser.email}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );
