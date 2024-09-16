@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import reactLogo from './assets/react.svg'; // 修正React图像的导入
+import ElLogo from './assets/ElLogo.png';
 
 const SearchBar = () => {
     const [serviceUsers, setServiceUsers] = useState([]);
     const [volunteerId, setVolunteerId] = useState('');
 
-    const volunteerData = {
-        VD001: {
+    const volunteerData = [
+        {
             id: 'VD001',
             name: 'Tommy To',
             email: 'tommyto@example.com',
@@ -21,7 +21,7 @@ const SearchBar = () => {
                 { id: 'SU008', name: 'Service User 8', email: 'serviceuser8@example.com' }
             ]
         },
-        VD002: {
+        {
             id: 'VD002',
             name: 'Ting Lau',
             email: 'tinglau@example.com',
@@ -36,11 +36,12 @@ const SearchBar = () => {
                 { id: 'SU016', name: 'Service User 16', email: 'serviceuser16@example.com' }
             ]
         }
-    };
+    ];
 
     const handleSearch = () => {
-        if (volunteerId in volunteerData) {
-            const selectedVolunteer = volunteerData[volunteerId];
+        const selectedVolunteer = volunteerData.find((volunteer) => volunteer.id.toLowerCase() === volunteerId.toLowerCase());
+        
+        if (selectedVolunteer) {
             setServiceUsers([...selectedVolunteer.serviceUsers]);
         } else {
             setServiceUsers([]);
@@ -54,22 +55,9 @@ const SearchBar = () => {
 
     return (
         <div>
-            <header>
-                <img className = "reactLogo" src={reactLogo} alt="reactlogo" /> {/* 使用导入的React图像 */}
-            </header>
-            <div>
-                <input
-                    className='searchBarCss'
-                    type="text"
-                    placeholder="Enter Volunteer ID"
-                    value={volunteerId}
-                    onChange={(e) => setVolunteerId(e.target.value)}
-                />
-                <button className="searchButtonCss" onClick={handleSearch}>Search</button>
-
-                {serviceUsers.length > 0 && (
+        <img className="ElLogo" src={ElLogo} alt="ElLogo" />
+            {volunteerId in volunteerData ? (
                     <div>
-
                         {groupedServiceUsers.map((group, index) => (
                             <div key={index} style={{ display: 'flex' }}>
                                 {group.map((serviceUser) => (
@@ -82,8 +70,18 @@ const SearchBar = () => {
                             </div>
                         ))}
                     </div>
+                ) : (
+                    <div>
+                        <input
+                            className='searchBarCss'
+                            type="text"
+                            placeholder="Enter Volunteer ID"
+                            value={volunteerId}
+                            onChange={(e) => setVolunteerId(e.target.value)}
+                        />
+                        <button className="searchButtonCss" onClick={handleSearch}>Search</button>
+                    </div>
                 )}
-            </div>
         </div>
     );
 };
