@@ -52,7 +52,6 @@ const App = () => {
 
     return (
         <div>
-            <img className="ElLogo" src={ElLogo} alt="ElLogo" />
             {volunteer ?
                 <div><strong>Name:</strong> {volunteer.name} <strong>Email:</strong> {volunteer.email}
                     <div style={{ display: 'flex', flexWrap:'wrap'}}>
@@ -65,6 +64,9 @@ const App = () => {
                 </div>
             : 
             <div>
+                <header>
+                    <img className="ElLogo" src={ElLogo} alt="ElLogo" />
+                </header>
                 <form onSubmit={handleSearch}>
                     <input
                         className='searchBarCss'
